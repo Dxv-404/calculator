@@ -1,0 +1,115 @@
+<!--S DEVKRISHNA-->
+<!--4BSCDS-->
+<!--23112015-->
+<html>
+    <head>
+        <title>Calculator</title>
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            }
+            h1 {
+                height:45vh;
+                margin-left:50%;
+            }
+            table {
+                border:2px solid black;
+                padding: 5px;
+                margin-left: 50%;
+                
+            }
+            td {
+                border:1px solid black;
+                padding:8px;
+            }
+            #screen{
+                height: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Calculator</h1>
+        <table>
+            <tr>
+                <td colspan="4" id="screen"></td>
+            </tr>
+            <tr>
+                <td onclick="clickHandler('1')"><button>1</button></td>
+                <td onclick="clickHandler('2')"><button>2</button></td>
+                <td onclick="clickHandler('3')"><button>3</button></td>
+                <td onclick="clickHandler('+')"><button>+</button></td>
+            </tr>
+            <tr>
+                <td onclick="clickHandler('4')"><button>4</button></td>
+                <td onclick="clickHandler('5')"><button>5</button></td>
+                <td onclick="clickHandler('6')"><button>6</button></td>
+                <td onclick="clickHandler('-')"><button>-</button></td>
+            </tr>
+            <tr>
+                <td onclick="clickHandler('7')"><button>7</button></td>
+                <td onclick="clickHandler('8')"><button>8</button></td>
+                <td onclick="clickHandler('9')"><button>9</button></td>
+                <td onclick="clickHandler('*')"><button>*</button></td>
+            </tr>
+            <tr>
+                <td onclick="clearscreen()"><button>C</button></td>
+                <td onclick="clickHandler('0')"><button>0</button></td>
+                <td onclick="calculatee()"><button>=</button></td>
+                <td onclick="clickHandler('/')"><button>/</button></td>
+            </tr>
+        </table>
+    </body>
+    <script>
+        console.log("hello world");
+        function clickHandler(value){
+            console.log("Button Clicked:"+ " "+value);
+        
+            if(value=='+'||value=='-'||value=='*'||value=='/'){
+                value=" "+value+" ";
+            }
+        var screenContent=document.getElementById("screen");
+        screenContent.innerHTML=screenContent.innerHTML+value;
+        }
+        function calculatee(){
+            console.log("Calculate button clicked...");
+            var expression=document.getElementById("screen").innerHTML;
+            console.log("Expression:"+" "+expression)
+            var listst=expression.split(" ");
+            console.log("list:"+" "+listst);
+            var result=0;
+            if(listst[1]=='+'){
+                result=parseInt(listst[0])+parseInt(listst[2]);
+            }
+            
+            document.getElementById("screen").innerHTML=result;
+            if(listst[1]=='-'){
+                result=parseInt(listst[0])-parseInt(listst[2]);
+            }
+            
+            document.getElementById("screen").innerHTML=result;
+            if(listst[1]=='*'){
+                result=parseInt(listst[0])*parseInt(listst[2]);
+            }
+            
+            document.getElementById("screen").innerHTML=result;
+            if(listst[1]=='/'){
+                if(listst[2]=='0'){
+                    console.log("Operation not possible");
+                    document.getElementById("screen").innerHTML="ERROR";
+                }
+                else{
+                    result=parseInt(listst[0])/parseInt(listst[2]);
+                }
+               
+            }
+            
+            document.getElementById("screen").innerHTML=result;
+        }
+        function clearscreen(){
+            console.log("Clear screen clicked");
+            document.getElementById("screen").innerHTML="";
+        }
+    </script>
+</html>
